@@ -25,20 +25,21 @@ def parse_entry(entry):
     # Match any rows starting with NOTE, an optional character, and :
     entry_data['notes'] = [line.pop() for line in entry_table if re.search("NOTE.*?:", line[0])]
 
-
-    # This is a very heavy assumption. In fact, one particular format of
-    # date and term of the lease specifies a lease end date, so this will need revisiting.
-
-    for i, key in enumerate(['date_of_lease','length_of_term','start_of_term']):
-        # Now the lessees title is out of the table, the last of each row is the lease term information
-        entry_data[key] = entry_table[i].pop().strip()
+    # Get the last "word" of each line, this is the lease information
+    lease_date_information = [line.pop().strip() for line in entry_table if line]
+    entry_data['date_of_lease'] = lease_date_information.pop(0)
+    entry_data['lease_term'] = ' '.join(lease_date_information)
 
     # transpose rows - easier for descriptions
     entry_table = [list(row) for row in itertools.zip_longest(*entry_table, fillvalue='')]
-    entry_data['registration_date'] = entry_table[0].pop(0).strip()
-    entry_data['plan_ref'] = ' '.join(entry_table[0]).strip()
-    entry_data["property_description"] = ''.join(entry_table[1]).strip()
+    entry_data['registration_date'] = entry_table[0].pop(0)
 
+    # These two are the most likely to give incorrect data, as it's very hard to determine which is which
+    entry_data['plan_ref'] = ' '.join(entry_table[0])
+    entry_data["property_description"] = ''.join(entry_table[1])
+
+    # last bit of data cleansing
+    entry_data.update({k: v.strip() for k,v in entry_data.items() if isinstance(v, str)})
     return entry_data
 
 

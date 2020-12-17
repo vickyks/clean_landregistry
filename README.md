@@ -70,8 +70,6 @@ For parsing the entryText data. What is definitely known:
 Edge cases:
 * the third row can cause problems. If it is only one field, it's a date (from the date of lease and term)
 * if it is not the only field, it can either be part of description, or plan ref, and there's no real way to tell
-* The structure of the api data isn't strictly consistent in the larger dataset. json_response['leaseschedule']
-  isn't necessarily a dict with the 'scheduleentry' key. It's sometimes a list of 'scheduleentry' dicts
 * If there are 1 or 2 "words" left within the last few rows , it can be unclear which column the data comes from.
 * The lease date/term information usually follows a consistent structure, but just occasionally it contains an end date too
 
@@ -82,7 +80,7 @@ Edge cases:
 * Do we want dates in datetime object format?
 * Should the "NOTE {X}: " part be removed for cleanliness?
 * Term of lease: is it worth removing the "from" 
-
+* Is there a way to use the length of the spaces to work out which column the data belongs to if it's on its own
 
 
 ## Installation

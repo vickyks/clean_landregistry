@@ -25,14 +25,15 @@ from orbital_witness.tests.json_response import (
 def test_cleanse(test_input, expected_table):
     result = cleanse(test_input)[0]
 
+    print(result.keys())
+
     keys = [
         "entry_number",
         "registration_date",
         "plan_ref",
         "property_description",
         "date_of_lease",
-        "start_of_term",
-        "length_of_term",
+        "lease_term",
         "lessees_title",
         "notes",
     ]

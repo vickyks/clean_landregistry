@@ -28,8 +28,7 @@ expected_table_simple = [
         "plan_ref": "tinted blue (part of)",
         "property_description": "Transformer Chamber (Ground Floor)",
         "date_of_lease": "23.01.2009",
-        "start_of_term": "23.1.2009",
-        "length_of_term": "99 years from",
+        "lease_term": "99 years from 23.1.2009",
         "lessees_title": "EGL551039",
         "notes": []
     }
@@ -64,8 +63,7 @@ expected_table_with_single_note = [
         "plan_ref": "Edged and numbered 4 in blue (part of)",
         "property_description": "Flat 2308 Landmark West Tower (twenty third floor flat)",
         "date_of_lease": "03.02.2010",
-        "start_of_term": "1.1.2009",
-        "length_of_term": "999 years from",
+        "lease_term": "999 years from 1.1.2009",
         "lessees_title": "EGL568130",
         "notes": ["NOTE: See entry in the Charges Register relating to a Deed of Rectification dated 26 January 2018"]
     }
@@ -102,8 +100,7 @@ expected_table_multiple_notes = [
         "plan_ref": "",
         "property_description": "Shoreditch High Street Station more particularly described in the lease",
         "date_of_lease": "11.11.2016",
-        "start_of_term": "",
-        "length_of_term": "",
+        "lease_term": "",
         "lessees_title": "AGL461975",
         "notes": [
             "NOTE 1: The lease comprises also other land.",
@@ -169,8 +166,7 @@ expected_table_many_entries = [
         "plan_ref": "Edged and numbered 30 (Part of) in brown",
         "property_description": "89H Denmark Hill (Second Floor Flat)",
         "date_of_lease": "03.08.1987",
-        "start_of_term": "3.8.1987",
-        "length_of_term": "125 years from",
+        "lease_term": "125 years from 3.8.1987",
         "lessees_title": "SGL493290",
         "notes": [
             "NOTE 1: A Deed dated 21 May 1992 made between (1) Orbit Housing Association and (2) Carol Jean Pryce is supplemental to the Lease dated 3 August 1987 of 89H Denmark Hill referred to above. It rectifies the lease plan.",
@@ -183,8 +179,7 @@ expected_table_many_entries = [
         "plan_ref": "edged and numbered in brown 13 (part of)",
         "property_description": "89E Denmark Hill (First Floor Flat)",
         "date_of_lease": "30.10.1987",
-        "start_of_term": "30.10.1987",
-        "length_of_term": "125 years from",
+        "lease_term": "125 years from 30.10.1987",
         "lessees_title": "SGL501009",
         "notes": [
         ]
@@ -195,8 +190,7 @@ expected_table_many_entries = [
         "plan_ref": "Edged and numbered 22 (Part of) in brown",
         "property_description": "11 Ashworth Close (Second Floor Flat)",
         "date_of_lease": "15.02.1988",
-        "start_of_term": "1.2.1988",
-        "length_of_term": "125 years from",
+        "lease_term": "125 years from 1.2.1988",
         "lessees_title": "SGL507575",
         "notes": [
             "NOTE 1: By a Deed dated 5 May 1995 made between (1) Orbit Housing Association (2) Anna Julie Price and (3) Nationwide Building Society the terms of the Lease were varied.  (Original Deed filed under SGL507575).",
@@ -205,3 +199,29 @@ expected_table_many_entries = [
     },
 ]
 
+
+# A really good "edge case with ambiguous lines and a very long 3rd column"
+json_response_long_date_format = [
+{
+    "leaseschedule": {
+        "scheduleType": "SCHEDULE OF NOTICES OF LEASE",
+        "scheduleEntry": [
+        {
+	"entryNumber": "141",
+	"entryDate": "",
+	"entryType": "Schedule of Notices of Leases",
+	"entryText": [
+	    "17.10.2017      47 Sheringham (Third Floor    13.10.2017      NGL973748  ",
+	    "Flat)                         From and                   ",
+	    "including 13               ",
+	    "October 2017               ",
+	    "to and                     ",
+	    "including 21               ",
+	    "November 2174              ",
+	    "NOTE: The lease was made under the provisions of section 56 or 93(4) of the Leasehold Reform, Housing and Urban Development Act 1993."
+                    ]
+                }
+            ]
+        }
+    }
+]
