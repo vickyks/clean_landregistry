@@ -225,3 +225,17 @@ json_response_long_date_format = [
         }
     }
 ]
+
+expected_table_long_date_format = [
+    {
+        "entry_number": "141",
+        "registration_date": "17.10.2017",
+        "plan_ref": "",
+        "property_description": "47 Sheringham (Third Floor Flat)",
+        "date_of_lease": "13.10.2017",
+        "lease_term": "From and including 13 October 2017 to and including 21 November 2174",
+        "lessees_title": "NGL973748",
+        "notes": ["NOTE: The lease was made under the provisions of section 56 or 93(4) of the Leasehold Reform, Housing and Urban Development Act 1993."]
+    }
+
+]
