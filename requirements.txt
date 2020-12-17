@@ -1,0 +1,4 @@
+flake8==3.8.3
+ipython==7.17.0
+isort==5.4.2
+pytest==6.2.1
