@@ -8,7 +8,6 @@ def parse_line(line):
     return list(filter(len, line.strip().split('  ')))
 
 
-
 def parse_entry(entry):
     '''
     Take the whole entry - it also contains the entry number
@@ -25,6 +24,10 @@ def parse_entry(entry):
 
     # Match any rows starting with NOTE, an optional character, and :
     entry_data['notes'] = [line.pop() for line in entry_table if re.search("NOTE.*?:", line[0])]
+
+
+    # This is a very heavy assumption. In fact, one particular format of
+    # date and term of the lease specifies a lease end date, so this will need revisiting.
 
     for i, key in enumerate(['date_of_lease','length_of_term','start_of_term']):
         # Now the lessees title is out of the table, the last of each row is the lease term information

@@ -55,8 +55,7 @@ appropriate as a key. Assuming this is not the case, list of dicts makes it easy
 
 I could have indexed the data structure in the form
 `{entry_number: {k:v for k,v in entry_data.items()}}`
-again, I felt like "list of dicts" was more easily parsable en-masse.
-Looking at the data, I'm glad I didn't take this approach - entry number is not unique.
+but entry number is not unique. Besides this, I felt like "list of dicts" was more easily parsable en-masse.
 
 
 For parsing the entryText data. What is definitely known:
@@ -66,7 +65,6 @@ For parsing the entryText data. What is definitely known:
 * Registration date is always the first word of the first row
 * notes are prepended with the word NOTE
 * notes come at the end
-
 * other than the first row, the final "field" in each row (excluding date) is the Date of lease and term column 
 
 Edge cases:
@@ -74,6 +72,9 @@ Edge cases:
 * if it is not the only field, it can either be part of description, or plan ref, and there's no real way to tell
 * The structure of the api data isn't strictly consistent in the larger dataset. json_response['leaseschedule']
   isn't necessarily a dict with the 'scheduleentry' key. It's sometimes a list of 'scheduleentry' dicts
+* If there are 1 or 2 "words" left within the last few rows , it can be unclear which column the data comes from.
+* The lease date/term information usually follows a consistent structure, but just occasionally it contains an end date too
+
 
 
 ### Questions / improvements?
