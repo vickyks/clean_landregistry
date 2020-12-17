@@ -5,14 +5,14 @@ json_response_simple = [
     {
         "leaseschedule": {
             "scheduletype": "schedule of notices of lease",
-            "scheduleentry": [
+            "scheduleEntry": [
                 {
                     "entryNumber": "1",
                     "entryDate": "",
-                    "entryType": "schedule of notices of leases",
+                    "entryType": "Schedule of Notices of Leases",
                     "entryText": [
-                        "28.01.2009      transformer chamber (ground   23.01.2009      egl551039  ",
-                        "tinted blue     floor)                        99 years from              ",
+                        "28.01.2009      Transformer Chamber (Ground   23.01.2009      EGL551039  ",
+                        "tinted blue     Floor)                        99 years from              ",
                         "(part of)                                     23.1.2009"
                     ]
                 }
@@ -39,7 +39,7 @@ json_response_with_single_note = [
     {
         "leaseschedule": {
             "scheduletype": "schedule of notices of lease",
-            "scheduleentry": [
+            "scheduleEntry": [
                 {
                     "entryNumber": "93",
                     "entryDate": "",
@@ -97,14 +97,14 @@ json_response_multiple_notes = [
 ]
 expected_table_multiple_notes = [
     {
-        "entry_number": "",
-        "registration_date": "",
+        "entry_number": "1",
+        "registration_date": "28.11.2018",
         "plan_ref": "",
-        "property_description": "",
-        "date_of_lease": "",
+        "property_description": "Shoreditch High Street Station more particularly described in the lease",
+        "date_of_lease": "11.11.2016",
         "start_of_term": "",
         "length_of_term": "",
-        "lessees_title": "",
+        "lessees_title": "AGL461975",
         "notes": [
             "NOTE 1: The lease comprises also other land.",
             "NOTE 2: No copy of the Lease referred to is held by HM Land Registry.",

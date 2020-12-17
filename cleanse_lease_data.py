@@ -1,39 +1,40 @@
+import itertools
 import argparse
 import re
 import json
+
+def parse_line(line):
+    # list comprehension is more pythonic, but filter is faster
+    return list(filter(len, line.strip().split('  ')))
+
 
 
 def parse_entry(entry):
     '''
     Take the whole entry - it also contains the entry number
+
     '''
     entry_data = {}
     entry_data['entry_number'] = entry["entryNumber"]
 
-    entry_text = entry["entryText"]
-    # Match any rows starting with NOTE, an optional character, and :
-    r = re.compile("NOTE.*?:")
-    entry_data['notes'] = filter(r.match, entry_text)
-
-    # Is it worth popping off the notes, to make parsing the rest easier?
-    entry_text = list(set(entry_text) - set(entry_data['notes']))
-
-    # registration date is always the first word of the first row
-    entry_data['registration_date'] = entry_text[0].split('  ')[0]
+    entry_table = [parse_line(line) for line in entry['entryText']]
 
     # Lessees title is always the last "word" of the first row
-    entry_data['lessees_title'] = entry_text[0].strip().split('  ')[-1]
+    # Pop this to make lists transposable
+    entry_data['lessees_title'] = entry_table[0].pop()
 
+    # Match any rows starting with NOTE, an optional character, and :
+    entry_data['notes'] = [line.pop() for line in entry_table if re.search("NOTE.*?:", line[0])]
 
+    for i, key in enumerate(['date_of_lease','length_of_term','start_of_term']):
+        # Now the lessees title is out of the table, the last of each row is the lease term information
+        entry_data[key] = entry_table[i].pop().strip()
 
-    entry_data["date_of_lease"] = entry_text[0]
-    entry_data["start_of_term"] = entry_text[0]
-    entry_data["length_of_term"] = entry_text[0]
-
-    entry_data["plan_ref"] = entry_text[0]
-    entry_data["property_description"] = entry_text[0]
-
-    entry_text = '\n'.join(entry_text)
+    # transpose rows - easier for descriptions
+    entry_table = [list(row) for row in itertools.zip_longest(*entry_table, fillvalue='')]
+    entry_data['registration_date'] = entry_table[0].pop(0).strip()
+    entry_data['plan_ref'] = ' '.join(entry_table[0]).strip()
+    entry_data["property_description"] = ''.join(entry_table[1]).strip()
 
     return entry_data
 
@@ -45,7 +46,7 @@ def cleanse(json_response):
     parsed_schedule_entries = [
         parse_entry(entry)
         for lease_schedule in json_response
-        for entry in lease_schedule['leaseschedule']['scheduleentry']
+        for entry in lease_schedule['leaseschedule']['scheduleEntry']
     ]
     return parsed_schedule_entries
 

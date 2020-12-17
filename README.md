@@ -23,9 +23,11 @@ This solution supports the JSON response from the Land Registry's API.
 
 ## Approach
 
-I took a TDD approach to this task, as it's easy to the human eye to identify which fields
-each part tof the schedule entry it should end up in, so a few tables of expected output
-can be manually created.
+After a bit of playing around with some of the data, I figured out a way to get most of the data out.
+
+I took advantage of pytest's parameterization for the tests, as it's easy to the human eye
+to identify which fields each part tof the schedule entry it should end up in, so a few
+tables of expected output can be manually created.
 It also speeds up the feedback loop of development.
 
 Using pytest for tests, and flake8 for quality.
@@ -34,7 +36,6 @@ Python 3.7 was chosen simply because that's what was installed on my home machin
 
 Other than this, the exercise doesn't need much in the way of dependencies, 
 so the directory structure is fairly simple.
-
 
 
 The output of the cleansed table should contain the following fields
@@ -60,7 +61,7 @@ Looking at the data, I'm glad I didn't take this approach - entry number is not 
 
 For parsing the entryText data. What is definitely known:
 * The column lengths are right padded with spaces. It looks like there's more than one space of delimiter.
-* Date of lease and term is always at least 3 rows
+* Date of lease and term is always at last 3 rows
 * Lessees title is always the last "word" of the first row
 * Registration date is always the first word of the first row
 * notes are prepended with the word NOTE
@@ -71,6 +72,8 @@ For parsing the entryText data. What is definitely known:
 Edge cases:
 * the third row can cause problems. If it is only one field, it's a date (from the date of lease and term)
 * if it is not the only field, it can either be part of description, or plan ref, and there's no real way to tell
+* The structure of the api data isn't strictly consistent in the larger dataset. json_response['leaseschedule']
+  isn't necessarily a dict with the 'scheduleentry' key. It's sometimes a list of 'scheduleentry' dicts
 
 
 ### Questions / improvements?
