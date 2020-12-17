@@ -100,7 +100,7 @@ expected_table_multiple_notes = [
         "plan_ref": "",
         "property_description": "Shoreditch High Street Station more particularly described in the lease",
         "date_of_lease": "11.11.2016",
-        "lease_term": "",
+        "lease_term": "From 02:00 on 13 November 2016 to 01:59 on 15 November 2026",
         "lessees_title": "AGL461975",
         "notes": [
             "NOTE 1: The lease comprises also other land.",
