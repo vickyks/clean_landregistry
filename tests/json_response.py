@@ -202,23 +202,23 @@ expected_table_many_entries = [
 
 # A really good "edge case with ambiguous lines and a very long 3rd column"
 json_response_long_date_format = [
-{
-    "leaseschedule": {
-        "scheduleType": "SCHEDULE OF NOTICES OF LEASE",
-        "scheduleEntry": [
-        {
-	"entryNumber": "141",
-	"entryDate": "",
-	"entryType": "Schedule of Notices of Leases",
-	"entryText": [
-	    "17.10.2017      47 Sheringham (Third Floor    13.10.2017      NGL973748  ",
-	    "Flat)                         From and                   ",
-	    "including 13               ",
-	    "October 2017               ",
-	    "to and                     ",
-	    "including 21               ",
-	    "November 2174              ",
-	    "NOTE: The lease was made under the provisions of section 56 or 93(4) of the Leasehold Reform, Housing and Urban Development Act 1993."
+    {
+        "leaseschedule": {
+            "scheduleType": "SCHEDULE OF NOTICES OF LEASE",
+            "scheduleEntry": [
+                {
+                    "entryNumber": "141",
+                    "entryDate": "",
+                    "entryType": "Schedule of Notices of Leases",
+                    "entryText": [
+                        "17.10.2017      47 Sheringham (Third Floor    13.10.2017      NGL973748  ",
+                        "Flat)                         From and                   ",
+                        "including 13               ",
+                        "October 2017               ",
+                        "to and                     ",
+                        "including 21               ",
+                        "November 2174              ",
+                        "NOTE: The lease was made under the provisions of section 56 or 93(4) of the Leasehold Reform, Housing and Urban Development Act 1993."
                     ]
                 }
             ]

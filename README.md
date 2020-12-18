@@ -71,16 +71,28 @@ Edge cases:
 * the third row can cause problems. If it is only one field, it's a date (from the date of lease and term)
 * if it is not the only field, it can either be part of description, or plan ref, and there's no real way to tell
 * If there are 1 or 2 "words" left within the last few rows , it can be unclear which column the data comes from.
-* The lease date/term information usually follows a consistent structure, but just occasionally it contains an end date too
-
+* The lease date/term information usually follows a consistent structure, but just occasionally it contains extra information on its start and end dates
 
 
 ### Questions / improvements?
 
 * Do we want dates in datetime object format?
 * Should the "NOTE {X}: " part be removed for cleanliness?
-* Term of lease: is it worth removing the "from" 
-* Is there a way to use the length of the spaces to work out which column the data belongs to if it's on its own
+* Is there a way to use the length of the spaces to work out which column the data belongs to if it's on its own -> yes
+
+
+### Comments on development
+I have spent a bit more than the recommended 3 hours on the task, simply because it was quite a lot of fun.
+In the end though, given that I wanted the README to be accurate on the running instructions, I have committed the sin of
+wrapping the `parse_entry` function in a try/except clause.
+
+If run as a script, it will output any parsing errors to stdout, and a wordcount on this shows that less than 30 entries
+are left unparsed.
+```
+$ python cleanse_lease_data.py ./tests/schedule_of_notices_of_lease_examples.json | wc -l
+29
+```
+
 
 
 ## Installation
@@ -95,8 +107,10 @@ pip install -r requirements.txt
 ## Development
 To run:
 ```
-python cleanse_lease_data.py response=response_json.json
+python cleanse_lease_data.py /path/to/response_json.json
 ```
+
+The results will be generated into a file called `cleansed_data.json`
 
 
 ## Tests
