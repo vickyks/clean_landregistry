@@ -28,7 +28,12 @@ After a bit of playing around with some of the data, I figured out a way to get 
 I took advantage of pytest's parameterization for the tests, as it's easy to the human eye
 to identify which fields each part tof the schedule entry it should end up in, so a few
 tables of expected output can be manually created.
-It also speeds up the feedback loop of development.
+
+
+To speed up the feedback loop of development, I wrapped pytest in an inotifywait function, to re-run on update:
+```
+function ptw() { python -m pytest; while find -name "*.py" | inotifywait --fromfile - ; do python -m pytest -vv; done; }
+```
 
 Using pytest for tests, and flake8 for quality.
 
@@ -81,7 +86,7 @@ Edge cases:
 * Is there a way to use the length of the spaces to work out which column the data belongs to if it's on its own -> yes
 
 
-### Comments on development
+## Comments on development
 I have spent a bit more than the recommended 3 hours on the task, simply because it was quite a lot of fun.
 In the end though, given that I wanted the README to be accurate on the running instructions, I have committed the sin of
 wrapping the `parse_entry` function in a try/except clause.
@@ -92,7 +97,6 @@ are left unparsed.
 $ python cleanse_lease_data.py ./tests/schedule_of_notices_of_lease_examples.json | wc -l
 29
 ```
-
 
 
 ## Installation
